@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 4th Month Anniversary, พี่ตอง! ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6eb;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+        h2 { color: #ff4d6d; margin-top: 0; }
+        
+        .btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .btn:hover { background-color: #ff758f; transform: scale(1.05); }
+        
+        #no-btn {
+            position: absolute;
+            transition: 0.2s ease;
+            background-color: #888;
+        }
+
+        .hidden { display: none; }
+        
+        .photo-item {
+            margin-bottom: 20px;
+            background: #fff0f3;
+            padding: 10px;
+            border-radius: 12px;
+        }
+        .photo-item img {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+        .caption {
+            font-size: 14px;
+            color: #d63384;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .love-letter {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+            text-align: left;
+            background: #ffe6eb;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Romantic Soft Piano Background Music -->
+<audio id="bg-music" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <!-- Screen 1: Trick Question -->
+    <div id="trick-screen">
+        <h2>💖 Happy 4th Month Anniversary! 💖</h2>
+        <p style="font-size: 18px; margin-bottom: 30px;">พี่ตองรักอ่าวไหมครับ? 🥺</p>
+        
+        <button class="btn" onclick="sayYes()">รักครับ ❤️</button>
+        <button class="btn" id="no-btn" onmouseover="moveButton()" onclick="moveButton()">ไม่รัก 😜</button>
+    </div>
+
+    <!-- Screen 2: Photos, Video & Love Letter -->
+    <div id="surprise-screen" class="hidden">
+        <h2>🎉 Happy 4 Monthsary With พี่ตอง 🎉</h2>
+
+        <!-- Photo 1 -->
+        <div class="photo-item">
+            <img src="https://i.postimg.cc/90f24L75/photo-2026-07-22-02-21-45.jpg" alt="Photo 1">
+            <div class="caption">นี่คือรูปแรกของเราสองคน ❤️</div>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="photo-item">
+            <img src="https://i.postimg.cc/6QBm5yZc/photo-2026-07-22-02-21-43.jpg" alt="Photo 2">
+            <div class="caption">รูปนี้เพราะพี่ตองน่ารักมากๆ 🥰</div>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="photo-item">
+            <img src="https://i.postimg.cc/cLhV3Rdv/photo-2026-07-22-02-38-21.jpg" alt="Photo 3">
+            <div class="caption">เพราะว่าอ่าวชอบ skinship ก็เลยอยากสัมผัสพี่ตองตลอดเวลา ช่วยเข้าใจหน่อยน้า 😉</div>
+        </div>
+
+        <!-- Video 4 (Vimeo) -->
+        <div class="video-container" id="video-box"></div>
+
+        <!-- Thai Love Letter Section -->
+        <div class="love-letter">
+            <p><strong>To: พี่ตอง ❤️</strong></p>
+            <p>ขอบคุณมากๆ นะครับที่คอยอยู่เคียงข้างอ่าวเสมอ</p>
+            <p>จากนี้และตลอดไป เรามาสร้างความทรงจำดีๆ และมีความสุขด้วยกันเยอะๆ นะครับ รักพี่ตองที่สุดเลยครับ! 💖</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function moveButton() {
+        const btn = document.getElementById('no-btn');
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 200 - 100;
+        btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function sayYes() {
+        document.getElementById('trick-screen').classList.add('hidden');
+        document.getElementById('surprise-screen').classList.remove('hidden');
+
+        // Play Piano Background Music
+        const audio = document.getElementById('bg-music');
+        audio.play().catch(function(error) {
+            console.log("Audio play error:", error);
+        });
+
+        // Vimeo Video Embed
+        document.getElementById('video-box').innerHTML = `<iframe src="https://player.vimeo.com/video/1211799050?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    }
+</script>
+
+</body>
+</html>
